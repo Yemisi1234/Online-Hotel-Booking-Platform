@@ -1,2 +1,7 @@
 node_modules/
-./client/node_modules/
+client/node_modules/
+client/public/env.js
+client/.env
+server/.env
+yarn.lock
+server/.env
