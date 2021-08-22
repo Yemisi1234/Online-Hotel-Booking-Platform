@@ -9,6 +9,7 @@ import TopNavBar from './components/TopNavBar'
 
 function App() {
   return (
+  
     <BrowserRouter>
    <TopNavBar />
     <Switch>
@@ -19,6 +20,7 @@ function App() {
 
 
     </BrowserRouter>
+  
   
 
   );
