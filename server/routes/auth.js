@@ -1,8 +1,12 @@
-import express from 'express';
-const router = express.Router();
 
-router.get('/:message',(req, res) =>{
-  res.status(200).send(`Here is your message: ${req.params.message}`);
-});
+var express = require("express");
+var router = express.Router();
+
+var { sendStatus, register } = require("../Controllers/authControllers");
+/* GET home page. */
+router.get("/:message", sendStatus);
+
+/*Post Request*/
+router.post("/register", register);
 
 module.exports = router;
