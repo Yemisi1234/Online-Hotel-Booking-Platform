@@ -1,5 +1,5 @@
 import Login from "./authentication/Login";
-import Signup from "./authentication/Signup";
+import Register from "./authentication/Register";
 import Home from "./bookings/Home";
 import {BrowserRouter, Switch, Route } from 'react-router-dom'
 import TopNavBar from './components/TopNavBar'
@@ -15,7 +15,7 @@ function App() {
     <Switch>
       <Route exact path ="/" component = {Home} />
       <Route exact path ="/login" component = {Login} />
-      <Route exact path =  "/signup" component = {Signup} />
+      <Route exact path =  "/signup" component = {Register} />
     </Switch>
 
 
