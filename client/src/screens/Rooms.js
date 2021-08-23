@@ -2,6 +2,8 @@ import React from 'react'
 import { useState,useEffect } from 'react'
 import roomDatabase from '../roomDatabase'
 import Room2 from './Room2';
+
+
 //import image from "client/src/screens/images"
 //import image from "../images/dexuleroom.jpeg"
 
@@ -12,10 +14,12 @@ export default function Rooms() {
     const [loading, setLoading]=useState();
     const [error, setError] = useState();
      
-    useEffect(()=>{
+    useEffect(async()=>{
       try {
           setLoading(true);
-          setRooms(roomDatabase)
+          const data = (await axios.get("http://localhost:3000/api/getAllRooms"))
+          .data;
+          setRooms(data)
           setLoading(false)
       } catch (error) {
           setError(true)
