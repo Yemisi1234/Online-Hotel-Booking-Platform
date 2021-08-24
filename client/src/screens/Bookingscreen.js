@@ -21,8 +21,10 @@ function Bookingscreen({match}) {
     const fromdate=moment(match.params.fromdate , 'DD-MM-YYYY')
     const todate=moment(match.params.todate,'DD-MM-YYYY')
     const totalDays = moment.duration(todate.diff(fromdate)).asDays()+1
+
+   // const totalAmount = totalDays * match.params.rentperday
     
-    const [totalAmount , settotalAmount]=useState()
+   const [totalAmount , settotalAmount]=useState()
     useEffect(async() => {
         
         try {
@@ -70,6 +72,7 @@ function Bookingscreen({match}) {
         }
         
     }
+    const emailaddress = "chinEmordi@gmail.com"
 
     return (
         <div className='m-5'>
@@ -102,23 +105,12 @@ function Bookingscreen({match}) {
                            <hr />
                            <p>Total Days : <b>{totalDays}</b></p>
                            <p>Rent Per Day : <b>{room.rentperday}</b></p>
-                           <h1><b>Total Amount : {totalAmount} /-</b></h1>
+                           <h1><b>Total Amount :#{totalAmount}</b></h1>
 
                          
-                             <Payment amount={totalAmount * 100}/>
+                             <Payment amount={totalAmount} email = {emailaddress} />
 
-                           <StripeCheckout
-            amount={totalAmount*100}
-            shippingAddress
-            token={tokenHander}
-            stripeKey='pk_test_51IYnC0SIR2AbPxU0TMStZwFUoaDZle9yXVygpVIzg36LdpO8aSG8B9j2C0AikiQw2YyCI8n4faFYQI5uG3Nk5EGQ00lCfjXYvZ'
-            currency='INR'
-            >
-
-                  
-                  <button className='btn btn-primary'>Pay Now</button>
-
-            </StripeCheckout>
+                          
                            </div>
                           
 

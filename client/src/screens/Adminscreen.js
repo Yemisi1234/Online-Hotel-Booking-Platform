@@ -368,7 +368,7 @@ export  function AdminHotelOwner() {
           owner , hotelName ,phonenumber ,email ,address, hotelImage
       }
       try {
-          const result = await axios.post('/api/hotel/addhotel' , ownerobj)
+          const result = await axios.post('/api/hotels/addhotel' , ownerobj)
       } catch (error) {
           
       }

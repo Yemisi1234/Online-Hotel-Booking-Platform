@@ -5,7 +5,7 @@ import { FlutterWaveButton, closePaymentModal } from 'flutterwave-react-v3';
 export default function Payment(props) {
   console.log(props.amount);
     
-    const pubKey = window.env.REACT_APP_PUBLIC_KEY;
+    const pubKey = process.env.REACT_APP_PUBLIC_KEY;
    const config = {
    //public_key: eval(window.env.REACT_APP_PUBLIC_KEY),
     // public_key: 'FLWPUBK_TEST-1318640e8c0f11793da8965c565bb507-X',
@@ -15,7 +15,7 @@ export default function Payment(props) {
     currency: 'NGN',
     payment_options: 'card,mobilemoney,ussd',
     customer: {
-      email: 'chinedu@gmail.com',
+      email: props.email,
       phonenumber: '08101052072',
       name: 'chinedu emordi',
     },

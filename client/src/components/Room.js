@@ -3,7 +3,7 @@ import { Modal, Carousel } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function Room({ room, fromdate, todate }) {
-  
+   console.log(room)
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);

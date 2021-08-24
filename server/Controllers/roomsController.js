@@ -19,6 +19,17 @@ async function getSingleRoom(req, res, id) {
   }
 }
 
+async function getRoomsByHotel(req, res, hotel){
+  hotel = req.params.hotel;
+  try{
+    let room = await rooms.find({hotelName:hotel});
+    return res.status(200).send(room);
+
+  }catch(err){
+    return res.status(200).json({err})
+  }
+}
+
 async function addRoom(req, res) {
   const {
     room,
@@ -50,4 +61,4 @@ async function addRoom(req, res) {
   }
 }
 
-module.exports = { getAllRooms, getSingleRoom, addRoom };
+module.exports = { getAllRooms, getSingleRoom, addRoom ,getRoomsByHotel};
