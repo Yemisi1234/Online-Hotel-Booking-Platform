@@ -17,7 +17,8 @@ function Bookingscreen({match}) {
     const[error, seterror]=useState(false)
     const[success, setsuccess]=useState(false)   
     const[room , setroom]=useState()
-    const roomid=match.params.roomid
+    const roomid=match.params.roomid;
+    console.log(roomid);
     const fromdate=moment(match.params.fromdate , 'DD-MM-YYYY')
     const todate=moment(match.params.todate,'DD-MM-YYYY')
     const totalDays = moment.duration(todate.diff(fromdate)).asDays()+1
@@ -29,7 +30,7 @@ function Bookingscreen({match}) {
         
         try {
             setloading(true);
-            const data = await (await axios.post("/api/rooms/getroombyid" , {roomid})).data;
+            const data = await (await axios.get(`/api/rooms/getRoom/${roomid}`)).data;
             console.log(data);
             setroom(data);
             setloading(false);
@@ -48,7 +49,7 @@ function Bookingscreen({match}) {
         const bookingDetails ={
 
             token ,
-            user : JSON.parse(localStorage.getItem('currentUser')),
+            user : JSON.parse(localStorage.getItem('currentUser')) || "chineduemordi@gmail.com",
             room ,
             fromdate,
             todate,
@@ -60,7 +61,7 @@ function Bookingscreen({match}) {
 
         try {
             setloading(true);
-            const result = await axios.post('/api/bookings/bookroom' , bookingDetails)
+            const result = await axios.get('/api/bookings/bookroom' , bookingDetails)
             setloading(false)
             Swal.fire('Congrats' , 'Your Room has booked succeessfully' , 'success').then(result=>{
                 window.location.href='/profile'
