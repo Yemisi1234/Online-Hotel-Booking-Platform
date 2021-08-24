@@ -9,11 +9,11 @@ const Signup = () => {
   const submitForm = async(e) => {
     try{
       e.preventDefault();                   
-       const res = await axios.post(`http://localhost:8000/api/register`,{
+       const res = await axios.post(`http://localhost:3000/api/register`, {
          name,
          email,
-         password
-    })
+         password,
+       });
     console.log('Register User ==> ', res);
     }
     catch(error){

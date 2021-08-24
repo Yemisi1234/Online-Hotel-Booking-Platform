@@ -1,6 +1,5 @@
 const rooms = require("../models/roomModel");
-const express = require("express");
-const router = express.Router();
+
 
 async function getAllRooms(req, res) {
   try {
@@ -11,4 +10,14 @@ async function getAllRooms(req, res) {
   }
 }
 
-module.exports = { getAllRooms };
+async function getSingleRoom(req, res, id) {
+  id = req.params.id;
+  try {
+    let room = await rooms.findOne({ _id: id });
+    return res.status(200).send(room);
+  } catch (err) {
+    return res.status(200).json({ err });
+  }
+}
+
+module.exports = { getAllRooms, getSingleRoom };

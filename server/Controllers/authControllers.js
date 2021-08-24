@@ -1,6 +1,8 @@
 var myUser = require("../models/userModel.js");
 var jwt = require("jsonwebtoken");
 
+
+//Register User
 async function register(req, res) {
   const { name, email, password } = req.body;
 
@@ -26,7 +28,7 @@ async function register(req, res) {
   }
 }
 
-//login
+//login User
 async function login(req, res) {
   const { email, password } = req.body;
   if (!email) return res.status(400).send("Email is required");
@@ -63,4 +65,30 @@ async function login(req, res) {
   }
 }
 
-module.exports = { register, login };
+//get all user
+async function allUser(req, res) {
+  try {
+    let all = await myUser.find({});
+    return res.status(200).send(all);
+  } catch (err) {
+    return res.status(400).json({ err });
+  }
+}
+
+//get Single User
+async function singleUser(req, res, id) {
+  id = req.params.id
+  try {
+    if(id){
+      let single = await myUser.findOne({_id:id});
+      return res.status(200).send(single);
+    }else{
+      return res.status(400).send({message: 'User not found'});
+    }
+    
+  } catch (err) {
+    return res.status(400).json({ err });
+  }
+}
+
+module.exports = { register, login, allUser,singleUser };
