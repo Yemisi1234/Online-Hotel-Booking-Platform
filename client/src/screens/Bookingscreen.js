@@ -21,6 +21,7 @@ function Bookingscreen({match}) {
     const fromdate=moment(match.params.fromdate , 'DD-MM-YYYY')
     const todate=moment(match.params.todate,'DD-MM-YYYY')
     const totalDays = moment.duration(todate.diff(fromdate)).asDays()+1
+    
     const [totalAmount , settotalAmount]=useState()
     useEffect(async() => {
         

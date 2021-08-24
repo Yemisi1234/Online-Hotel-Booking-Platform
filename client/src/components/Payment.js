@@ -2,8 +2,8 @@ import React from 'react';
 import { FlutterWaveButton, closePaymentModal } from 'flutterwave-react-v3';
 
 
-export default function Payment({booking}) {
-  console.log(booking.amount);
+export default function Payment(props) {
+  console.log(props.amount);
     
     const pubKey = window.env.REACT_APP_PUBLIC_KEY;
    const config = {
@@ -11,7 +11,7 @@ export default function Payment({booking}) {
     // public_key: 'FLWPUBK_TEST-1318640e8c0f11793da8965c565bb507-X',
     public_key: pubKey,
     tx_ref: Date.now(),
-    amount: 100,
+    amount: props.amount,
     currency: 'NGN',
     payment_options: 'card,mobilemoney,ussd',
     customer: {
