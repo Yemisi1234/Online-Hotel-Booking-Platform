@@ -11,7 +11,7 @@ const {
 
 router.get("/rooms/getAllRooms", getAllRooms);
 
-
+router.get("/rooms/getRoom/:id", getSingleRoom);
 // router.put("/rooms/updateRoom/:id", updateSingleRoom);
 
 
