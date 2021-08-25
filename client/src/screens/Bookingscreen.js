@@ -26,6 +26,7 @@ function Bookingscreen({match}) {
 
    // const totalAmount = totalDays * match.params.rentperday
     console.log("i am in booking pay");
+    console.log("transaction id " + v4());
     console.log(JSON.parse(localStorage.getItem('currentUser')).user.Id)
     console.log(JSON.parse(localStorage.getItem('currentUser')).user.name)
     console.log(JSON.parse(localStorage.getItem('currentUser')).user.email)
@@ -35,7 +36,7 @@ function Bookingscreen({match}) {
         
         try {
             setloading(true);
-            const data = await (await axios.get(`http://localhost:5000/api/getRoom/${roomid}`)).data;
+            const data = await (await axios.get(`http://localhost:5000/api/rooms/getRoom/${roomid}`)).data;
             console.log("this is the room from database  " + data);
             setroom(data);
             setloading(false);
@@ -54,12 +55,12 @@ function Bookingscreen({match}) {
 
             
             userid : JSON.parse(localStorage.getItem('currentUser')).user.Id,
-            roomName :room.name,
+            roomName :room.roomName,
             fromdate : match.params.fromdate,
             todate : match.params.todate,
             totalDays:totalDays,
             totalAmount:totalAmount,
-            transactionid:v4(),
+            transactionId:v4(),
             status:"booked"
 
         }
@@ -96,7 +97,7 @@ console.log("this is " + bookingDetails.roomName);
                       <div className="col-md-6 my-auto">
                         
                          <div>
-                         <h1>roomName: {room.name}</h1>
+                         <h1>roomName: {room.roomName}</h1>
                            <img src={room.imageurls[0]} style={{height:'400px'}} />
                          </div>
 
@@ -107,7 +108,7 @@ console.log("this is " + bookingDetails.roomName);
                            <hr />
 
                            <p><b>Name</b> : {JSON.parse(localStorage.getItem('currentUser')).user.name}</p>
-                           <p>roomName:{room.name}</p>
+                           <p>roomName:{room.roomName}</p>
                            <p><b>From Date</b> : {match.params.fromdate}</p>
                            <p><b>To Date</b> : {match.params.todate}</p>
                            <p><b>Max Count </b>: {room.maxcount}</p>

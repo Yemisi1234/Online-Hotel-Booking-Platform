@@ -42,7 +42,7 @@ function Rooms() {
                            {rooms.map(room=>{
                                return <tr>
                                    <td>{room._id}</td>
-                                   <td>{room.name}</td>
+                                   <td>{room.roomName}</td>
                                    <td>{room.type}</td>
                                    <td>{room.rentperday}</td>
                                    <td>{room.maxcount}</td>

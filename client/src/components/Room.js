@@ -45,7 +45,7 @@ function Room({ room, fromdate, todate }) {
 
       <Modal show={show} onHide={handleClose} size="lg" data--aos='zoom-in'>
         <Modal.Header>
-          <Modal.Title>{room.name}</Modal.Title>
+          <Modal.Title>{room.roomName}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
