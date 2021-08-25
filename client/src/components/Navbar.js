@@ -9,9 +9,9 @@ function Navbar() {
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg">
-        <a className="navbar-brand" href="/">
-          Shey Rooms
+      <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="/">
+          Hotela
         </a>
         <button
           className="navbar-toggler"

@@ -11,6 +11,7 @@ const roomSchema = new Schema(
       type: String,
       required: true,
     },
+
     maxcount: {
       type: Number,
       required: true,

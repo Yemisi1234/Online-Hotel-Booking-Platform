@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "react-date-range/dist/styles.css"; // main style file
-import "react-date-range/dist/theme/default.css"; // theme css file
+import "react-date-range/dist/theme/default.css"; 
+import{useParams} from 'react-router-dom'// theme css file
 import { Calendar } from "react-date-range";
 import { DateRangePicker } from "react-date-range";
 import moment from "moment";
@@ -14,6 +15,9 @@ import 'aos/dist/aos.css';
 AOS.init();
 const { RangePicker } = DatePicker;
 function Homescreen() {
+
+  const params = useParams();
+  console.log(params);
   const [hotels, sethotels] = useState([]);
   const [duplicatehotes, setduplicatehotes] = useState([]);
   const [fromdate, setfromdate] = useState('');
@@ -62,7 +66,10 @@ function Homescreen() {
   useEffect(async () => {
     try {
       setloading(true);
-      const rooms = await (await axios.get("/api/rooms/getallrooms")).data;
+      // const rooms = await (await axios.get(`/api/rooms/getRooms/${params}`)).data;
+      console.log(`/api/rooms/getRooms/${params.hotelName}`);
+      const rooms = await (await axios.get(`/api/rooms/getRooms/${params.hotelName}`)).data;
+
       console.log(rooms);
       sethotels(rooms);
       setduplicatehotes(rooms)
@@ -121,6 +128,7 @@ function Homescreen() {
           </div>
         </div>
       </div>
+
 
       <div className="row justify-content-center">
         {loading ? (
