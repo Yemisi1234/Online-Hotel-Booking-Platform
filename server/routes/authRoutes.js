@@ -9,10 +9,16 @@ var {
 } = require("../Controllers/authControllers");
 
 /*Post Request to Register Client*/
-router.post("/register", register);
+router.post("/users/register", register);
 
 /*Post Request to login Client*/
-router.post("/login", login);
+router.post("/users/login", login);
+
+//get all
+router.get("/users/alluser", allUser);
+
+//get all
+router.get("/users/User/:id", singleUser);
 
 //get all
 router.get("/alluser", allUser);

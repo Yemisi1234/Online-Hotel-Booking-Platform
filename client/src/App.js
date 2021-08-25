@@ -1,37 +1,31 @@
-import Login from "./authentication/Login";
+//import logo from "./logo.svg";
 import "./App.css";
-import Register from "./authentication/Register";
-import Home from "./bookings/Home";
-import {BrowserRouter, Switch, Route } from 'react-router-dom'
-import TopNavBar from './components/TopNavBar'
-import Payment from "./components/Payment"
-import Rooms from "./screens/Rooms"
-import Hotels  from "./components/Hotels";
-
-
+import {BrowserRouter, Route , path} from 'react-router-dom'
+import Homescreen from "./screens/Homescreen";
+import Navbar from "./components/Navbar";
+import Loginscreen from "./screens/Loginscreen";
+import Registerscreen from "./screens/Registerscreen";
+import 'antd/dist/antd.css';
+import Bookingscreen from "./screens/Bookingscreen";
+import Profilescreen from "./screens/Profilescreen";
+import Landingscreen from "./screens/Landingscreen";
+import Adminscreen from "./screens/Adminscreen";
 
 function App() {
   return (
-  
-    <BrowserRouter>
-   <TopNavBar /> 
-   
-   <Payment />
-   <Hotels />
-    <Switch>
-      <Route exact path ="/" component = {Home} />
-      <Route exact path ="/login" component = {Login} />
-      <Route exact path =  "/signup" component = {Register} />
-      {/* <Route exact path ="/Hotel"  component = {Hotels} /> */}
-
-      <Route exact path ="/Hotel/Rooms"  component = {Rooms} />
-    </Switch>
-
-
-    </BrowserRouter>
-  
-  
-
+    <div className="App">
+      <Navbar />
+      <BrowserRouter>
+      
+         <Route path="/" exact component={Landingscreen}/>
+         <Route path="/home" exact component={Homescreen}/>
+         <Route path="/login" component={Loginscreen}/>
+         <Route path="/register" component={Registerscreen}/>
+         <Route path="/book/:roomid/:fromdate/:todate" component={Bookingscreen}/>
+         <Route path="/profile" component={Profilescreen}/>
+         <Route path="/admin" component={Adminscreen}/>
+      </BrowserRouter>
+    </div>
   );
 }
 
