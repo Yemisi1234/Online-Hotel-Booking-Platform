@@ -7,13 +7,15 @@ AOS.init({
     duration:'2000'
 });
 function Landingscreen() {
+  const linkTo = localStorage.getItem('currentUser') ? ("/Hotels"):("/login")
   return (
     <div className="">
       <div className="landing row justify-content-center text-center">
         <div className="col-md-9 my-auto" style={{borderRight:'8px solid white'}}>
           <h2 style={{ color: "white", fontSize: "130px" }} data-aos='zoom-in'>SheyRooms</h2>
           <h1 style={{ color: "white"}} data-aos='zoom-out' >“There is only one boss. The Guest.</h1>
-          <Link to="/Hotels">
+          
+          <Link to={linkTo}>
              <button className='btn btn-primary'>Get Started</button>
           </Link>
         </div>
@@ -21,6 +23,19 @@ function Landingscreen() {
         
         
       </div>
+   <div>
+     
+   </div>
+      {localStorage.getItem('currentUser') ? (
+          <Link to="/Hotels">
+          <button className='btn btn-primary'>Get Started</button>
+       </Link>
+
+          ):(
+            <Link to="/login">
+             <button className='btn btn-primary'>Get Started</button>
+          </Link>
+          )}
      
     </div>
   );
