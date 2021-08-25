@@ -3,7 +3,11 @@ const { Schema } = mongoose;
 
 const roomSchema = new Schema(
   {
-    name: {
+    hotelName: {
+      type: String,
+      required: true,
+    },
+    room: {
       type: String,
       required: true,
     },
