@@ -14,7 +14,7 @@ function Navbar() {
           Hotela
         </a>
         <button
-          className="navbar-toggler"
+          class="navbar-toggler"
           type="button"
           data-toggle="collapse"
           data-target="#navbarNav"
