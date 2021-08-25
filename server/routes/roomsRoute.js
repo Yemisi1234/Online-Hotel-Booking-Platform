@@ -13,4 +13,6 @@ router.get("/rooms/getRoom/:id", getSingleRoom);
 
 router.post("/rooms/addroom", addRoom);
 
+router.get("/getRoom/:id", getSingleRoom);
+
 module.exports = router;

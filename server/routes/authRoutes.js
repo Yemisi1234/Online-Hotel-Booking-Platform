@@ -20,4 +20,11 @@ router.get("/users/alluser", allUser);
 //get all
 router.get("/users/User/:id", singleUser);
 
+//get all
+router.get("/alluser", allUser);
+
+//get all
+router.get("/User/:id", singleUser);
+
+
 module.exports = router;
