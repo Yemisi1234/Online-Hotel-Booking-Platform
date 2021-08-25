@@ -64,7 +64,7 @@ export function Bookings() {
     try {
       setloading(true);
       const data = await (
-        await axios.get("/api/bookings/getallbookings")
+        await axios.get("/api/bookings/getbookings")
       ).data;
       setbookings(data);
       setloading(false);
@@ -171,7 +171,7 @@ export function Users(){
   useEffect(async() => {
 
     try {
-      const data = await (await axios.get('/api/users/getallusers')).data
+      const data = await (await axios.get('/api/users/alluser')).data
       setusers(data)
       setloading(false)
     } catch (error) {
