@@ -16,14 +16,16 @@ function App() {
     <div className="App">
       <Navbar />
       <BrowserRouter>
-      
-         <Route path="/" exact component={Landingscreen}/>
-         <Route path="/home" exact component={Homescreen}/>
-         <Route path="/login" component={Loginscreen}/>
-         <Route path="/register" component={Registerscreen}/>
-         <Route path="/book/:roomid/:fromdate/:todate" component={Bookingscreen}/>
-         <Route path="/profile" component={Profilescreen}/>
-         <Route path="/admin" component={Adminscreen}/>
+        <Route path="/" exact component={Landingscreen} />
+        <Route path="/home" exact component={Homescreen} />
+        <Route path="/login" component={Loginscreen} />
+        <Route path="/register" component={Registerscreen} />
+        <Route
+          path="/book/:roomid/:fromdate/:todate"
+          component={Bookingscreen}
+        />
+        <Route path="/profile" component={Profilescreen} />
+        <Route path="/admin" component={Adminscreen} />
       </BrowserRouter>
     </div>
   );

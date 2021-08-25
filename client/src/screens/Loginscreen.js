@@ -31,7 +31,10 @@ export default function Loginscreen() {
     }
       try {
         setloading(true)
-        const result = await (await axios.post('/api/users/login',user)).data
+        const result = await (
+          await axios.post("http://localhost:5000/api/users/login", user)
+        ).data;
+        console.log(result);
         localStorage.setItem('currentUser',JSON.stringify(result))
         window.location.href='/'
       } catch (error) {
