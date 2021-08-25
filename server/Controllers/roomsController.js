@@ -20,16 +20,16 @@ async function getSingleRoom(req, res, id) {
   }
 }
 
-async function updateSingleRoom(req, res, id) {
-  id = req.params.id;
-  try {
-    let room = await rooms.findOne({ _id: id });
+// async function updateSingleRoom(req, res, id) {
+//   id = req.params.id;
+//   try {
+//     let room = await rooms.findOne({ _id: id });
 
-    return res.status(200).send(room);
-  } catch (err) {
-    return res.status(200).json({ err });
-  }
-}
+//     return res.status(200).send(room);
+//   } catch (err) {
+//     return res.status(200).json({ err });
+//   }
+// }
 
 async function getRoomsByHotel(req, res, hotel) {
   hotel = req.params.hotel;
@@ -43,7 +43,7 @@ async function getRoomsByHotel(req, res, hotel) {
 
 async function addRoom(req, res) {
   const {
-    room,
+    roomName,
     rentperday,
     maxcount,
     description,
@@ -55,7 +55,7 @@ async function addRoom(req, res) {
   } = req.body;
 
   const newroom = new Room({
-    name: room,
+    roomName,
     rentperday,
     maxcount,
     description,
