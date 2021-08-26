@@ -24,7 +24,7 @@ const roomSchema = new Schema(
       type: Number,
       required: true,
     },
-    imgUrls: [],
+    imgurls: [],
     currentbookings: [],
     roomtype: {
       type: String,

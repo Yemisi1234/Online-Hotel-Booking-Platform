@@ -8,10 +8,11 @@ import "antd/dist/antd.css";
 import Bookingscreen from "./screens/Bookingscreen";
 import Profilescreen from "./screens/Profilescreen";
 import Landingscreen from "./screens/Landingscreen";
-import Adminscreen from "./screens/Adminscreen";
+import Adminscreen from "./screens/AdminMainscreen";
 import Hotelscreen from "./screens/Hotelscreen";
 import Login from "./screens/Login";
-// import Homescreen from "./screens/Homescreen"
+ import AdminMainscreen from "./screens/AdminMainscreen";
+ import AdminHotelscreen from "./screens/AdminHotelscreen"
 
 function App() {
   return (
@@ -29,7 +30,9 @@ function App() {
           component={Bookingscreen}
         />
         <Route path="/profile" exact component={Profilescreen} />
-        <Route path="/admin" exact component={Adminscreen} />
+        <Route path="/mainAdmin" exact component={AdminMainscreen} />
+        <Route path="/hotelAdmin" exact component={AdminHotelscreen} />
+
         <Route path="/Hotels" exact component={Hotelscreen} />
         <Route path="/home/:hotelName" exact component={Homescreen} />
       </BrowserRouter>

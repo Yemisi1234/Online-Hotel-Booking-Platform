@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Tabs } from "antd";
+import {Link } from 'react-router-dom'
 import axios from "axios";
 import Swal from "sweetalert2";
 import Error from "../components/Error";
@@ -7,6 +8,8 @@ import Loader from "../components/Loader";
 import Success from "../components/Success";
 import { Tag, Divider } from 'antd';
 const { TabPane } = Tabs;
+console.log(JSON.parse(localStorage.getItem('currentUser')));
+//console.log(JSON.parse(localStorage.getItem('currentUser')).user.isAdmin);
 
 const user = JSON.parse(localStorage.getItem('currentUser'))
 function Profilescreen() {
@@ -18,10 +21,16 @@ function Profilescreen() {
             <div className="col-md-6 bs m-2 p-3">
               <h1>Name : {user.user.name}</h1>
               <h1>Email : {user.user.email}</h1>
-              <h1>Admin Access : {user.isAdmin ? "Yes" : "No"}</h1>
-              <div className="text-right">
-                <button className="btn btn-primary">Get Admin Access</button>
-              </div>
+             
+          {(user.isAdmin ==="mainAdmin") ? (<Link to="/mainAdmin">
+          <button className="btn btn-primary">get main Admin Access</button>
+        </Link>) : (user.isAdmin ==="hotelAdmin")? (<Link to="/hotelAdmin">
+            <button className="btn btn-primary">get hotel owner Admin Access</button>
+          </Link>):(<h1>you are not a admin</h1>)}
+
+
+
+
             </div>
           </div>
         </TabPane>

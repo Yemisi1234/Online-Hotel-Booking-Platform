@@ -71,6 +71,8 @@ console.log("this is " + bookingDetails.roomName);
             console.log("this is " + bookingDetails.totalDays);
             const result = await axios.post('/api/bookings/bookRoom' , bookingDetails)
             console.log("this is database result " + result)
+            const updateroom = await (await axios.put(`http://localhost:5000/api/rooms/update/${roomid}`)).data;
+           
             setloading(false)
             // Swal.fire('Congrats' , 'Your Room has booked succeessfully' , 'success').then(result=>{
                 // window.location.href='/profile'
@@ -121,7 +123,7 @@ console.log("this is " + bookingDetails.roomName);
                            <p>Rent Per Day : <b>{room.rentperday}</b></p>
                            <h1><b>Total Amount :#{totalAmount}</b></h1>
 
-                           <button onClick ={bookingHander}>book room</button>
+                           <button onClick ={bookingHander}>book room, pay later</button>
                              <Payment amount={totalAmount} name = {JSON.parse(localStorage.getItem('currentUser')).user.name} email = {JSON.parse(localStorage.getItem('currentUser')).user.email} onClick={bookingHander} />
 
                           
