@@ -4,6 +4,7 @@ var validator = require("email-validator");
 
 //Register User
 async function register(req, res) {
+  const validateEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   const { name, email, password } = req.body;
 
   if (!name || name === "" || name.length < 3)
@@ -12,6 +13,7 @@ async function register(req, res) {
     return res
       .status(400)
       .send("Password is required and should be minimum of 6 characters long");
+  if(!validateEmail.test(email)) return res.status(400).send("Invalid email input")
 
   let isValidEmail = validator.validate(email);
   if (!isValidEmail) return res.status(400).send("Please Use a valid Email");

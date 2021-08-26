@@ -1,6 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 
+import "./Navbar.css";
 function Navbar() {
   function logout() {
     localStorage.removeItem("currentUser");
@@ -9,12 +10,17 @@ function Navbar() {
 
   return (
     <div>
-      <nav class="navbar navbar-expand-lg">
-        <a class="navbar-brand" href="/">
-          Hotela
+      <nav className="navbar navbar-expand-lg">
+        <a className="navbar-brand" href="/" style={{ color: "white" }}>
+          {/* <img  src="https://dcassetcdn.com/design_img/3334998/716591/716591_18266292_3334998_ad3eec7a_image.png" /> */}
+          <i
+            class="fas fa-home"
+            style={{ color: "gold", fontSize: "30px" }}
+          ></i>
+          Home
         </a>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-toggle="collapse"
           data-target="#navbarNav"

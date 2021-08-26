@@ -34,13 +34,7 @@ function Hotelscreen() {
       setloading(false);
     }
   }, []);
-
-  
-
   return (
-  
-      
-
       <div className="row justify-content-center">
         {loading ? (
           <Loader />
@@ -54,7 +48,6 @@ function Hotelscreen() {
           })
         )}
       </div>
-   
   );
 }
   
