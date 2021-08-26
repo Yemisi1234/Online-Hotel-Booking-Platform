@@ -3,7 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "build": "cd client && yarn run build",
+    "install-client": "cd client && yarn install",
+    "heroku-postbuild": "yarn run install-client && yarn run build",
+    "start": "nodemon ./bin/www",
+    "develop": "concurrently --kill-others-on-fail \"yarn run server\" \"yarn run start --prefix client\""
   },
   "dependencies": {
     "bcrypt": "^5.0.1",

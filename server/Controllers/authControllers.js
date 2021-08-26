@@ -62,6 +62,7 @@ async function login(req, res) {
           name: userExists.name,
           isAdmin:"NO",
           email: userExists.email,
+          isAdmin: userExists.isAdmin,
           createdAt: userExists.createdAt,
           updatedAt: userExists.updatedAt,
         },

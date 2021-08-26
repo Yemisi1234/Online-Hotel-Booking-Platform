@@ -20,16 +20,22 @@ async function getSingleRoom(req, res, id) {
   }
 }
 
-// async function updateSingleRoom(req, res, id) {
-//   id = req.params.id;
-//   try {
-//     let room = await rooms.findOne({ _id: id });
+async function updateSingleRoom(req, res, id) {
+  id = req.params.id;
+  try {
+    let room = await rooms.findOne({ _id: id });
+    console.log(room);
+    room.maxcount = room.maxcount - 1;
+    // console.log(room);
+    updatedRoom = await room.save();
+    console.log("room says:", room);
+    console.log("updatedroom says:", updatedRoom);
 
-//     return res.status(200).send(room);
-//   } catch (err) {
-//     return res.status(200).json({ err });
-//   }
-// }
+    return res.status(200).send(room);
+  } catch (err) {
+    return res.status(400).json({ err });
+  }
+}
 
 async function getRoomsByHotel(req, res, hotel) {
   hotel = req.params.hotel;
@@ -43,6 +49,7 @@ async function getRoomsByHotel(req, res, hotel) {
 
 async function addRoom(req, res) {
   const {
+    hotelName,
     roomName,
     rentperday,
     maxcount,
@@ -54,7 +61,8 @@ async function addRoom(req, res) {
     image3,
   } = req.body;
 
-  const newroom = new Room({
+  const newroom = new rooms({
+    hotelName,
     roomName,
     rentperday,
     maxcount,
@@ -72,4 +80,10 @@ async function addRoom(req, res) {
   }
 }
 
-module.exports = { getAllRooms, getSingleRoom, addRoom, getRoomsByHotel };
+module.exports = {
+  getAllRooms,
+  getSingleRoom,
+  addRoom,
+  getRoomsByHotel,
+  updateSingleRoom,
+};
