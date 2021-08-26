@@ -6,6 +6,7 @@ import Room from  '../components/Room';
 
 export default function Hotels({hotel}) {
     console.log(hotel);
+    
 
 //const emailaddress =JSON.parse(localStorage.getItem('currentUser')).email
 
@@ -16,8 +17,6 @@ return <Room />
    }
 
     return (
-
-      
 
         <div className='m-5'>
 

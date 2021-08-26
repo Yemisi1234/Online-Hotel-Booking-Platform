@@ -3,6 +3,7 @@ import moment from "moment"
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Link } from "react-router-dom";
+import './Landingscreen.css'
 AOS.init({
     duration:'2000'
 });
@@ -12,11 +13,11 @@ function Landingscreen() {
     <div className="">
       <div className="landing row justify-content-center text-center">
         <div className="col-md-9 my-auto" style={{borderRight:'8px solid white'}}>
-          <h2 style={{ color: "white", fontSize: "130px" }} data-aos='zoom-in'>SheyRooms</h2>
+          <h2 style={{ color: "white", fontSize: "90px" }} data-aos='zoom-in'>Hotela Classic</h2>
           <h1 style={{ color: "white"}} data-aos='zoom-out' >“There is only one boss. The Guest.</h1>
           
           <Link to={linkTo}>
-             <button className='btn btn-primary'>Get Started</button>
+             <button className='btn btn-primary check'>Get Started</button>
           </Link>
         </div>
 

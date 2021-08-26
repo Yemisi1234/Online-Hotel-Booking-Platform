@@ -6,6 +6,7 @@ import Error from "../components/Error";
 import Loader from "../components/Loader";
 import Success from "../components/Success";
 import { Tag, Divider } from "antd";
+import './Adminscreen.css';
 
 
 
