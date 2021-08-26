@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
-import {useDispatch , useSelector} from 'react-redux'
 import axios from "axios";
 import Error from "../components/Error";
 import Loader from "../components/Loader";
-import Success from '../components/Success'
-import './Registerscreen.css'
+import Success from "../components/Success";
+import "./Registerscreen.css";
+import { useHistory } from "react-router-dom";
 
 export default function Registerscreen() {
   const [name, setname] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [cpassword, setcpassword] = useState("");
-  const[loading, setloading]=useState(false)
-  const[error, seterror]=useState(false)
-  const[success, setsuccess]=useState(false) 
+  const [loading, setloading] = useState(false);
+  const [error, seterror] = useState(false);
+  const [success, setsuccess] = useState(false);
+  const router = useHistory();
   async function register() {
     if (password != cpassword) {
       alert("passwords not matched");
@@ -25,6 +26,7 @@ export default function Registerscreen() {
       };
       console.log(user);
       try {
+        seterror(false);
         setloading(true);
         const result = await axios.post(
           "http://localhost:5000/api/users/register",
@@ -36,6 +38,7 @@ export default function Registerscreen() {
         setname("");
         setcpassword("");
         setpassword("");
+        router.push("/login");
       } catch (error) {
         seterror(true);
         setloading(false);

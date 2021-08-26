@@ -41,7 +41,7 @@ window.env = {
   "PAGER": "less",
   "npm_package_dependencies_react_redux": "~7.2.4",
   "LSCOLORS": "Gxfxcxdxbxegedabagacad",
-  "PATH": "/var/folders/48/w20yxt9122xb3n9jqv_0mdnm0000gn/T/yarn--1630003387630-0.6485772892098352:/Users/e/Documents/week-8-group-task-sq008-group-2/client/node_modules/.bin:/Users/e/.config/yarn/link/node_modules/.bin:/usr/local/libexec/lib/node_modules/npm/bin/node-gyp-bin:/usr/local/lib/node_modules/npm/bin/node-gyp-bin:/usr/local/bin/node_modules/npm/bin/node-gyp-bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+  "PATH": "/var/folders/48/w20yxt9122xb3n9jqv_0mdnm0000gn/T/yarn--1630005291704-0.016222414574390553:/Users/e/Documents/week-8-group-task-sq008-group-2/client/node_modules/.bin:/Users/e/.config/yarn/link/node_modules/.bin:/usr/local/libexec/lib/node_modules/npm/bin/node-gyp-bin:/usr/local/lib/node_modules/npm/bin/node-gyp-bin:/usr/local/bin/node_modules/npm/bin/node-gyp-bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin",
   "npm_config_argv": "{\"remain\":[],\"cooked\":[\"run\",\"start\"],\"original\":[\"start\"]}",
   "_": "/Users/e/Documents/week-8-group-task-sq008-group-2/client/node_modules/.bin/react-dotenv",
   "__CFBundleIdentifier": "com.microsoft.VSCode",
