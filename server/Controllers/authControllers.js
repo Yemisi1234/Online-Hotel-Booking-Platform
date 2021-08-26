@@ -4,6 +4,7 @@ var jwt = require("jsonwebtoken");
 
 //Register User
 async function register(req, res) {
+  const validateEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   const { name, email, password } = req.body;
 
   if (!name) return res.status(400).send("Name is required");
@@ -11,6 +12,7 @@ async function register(req, res) {
     return res
       .status(400)
       .send("Password is required and should be minimum of 6 characters long");
+  if(!validateEmail.test(email)) return res.status(400).send("Invalid email input")
 
   let userExists = await myUser.findOne({ email }).exec();
 
