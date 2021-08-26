@@ -4,7 +4,7 @@ var router = express.Router();
 const {
   bookings,
   bookRoom,
-  cancelBooking,
+  // cancelBooking,
 } = require("../Controllers/bookingsController");
 // var { requireSignin } = require("../middlewares/middleware");
 
@@ -13,6 +13,7 @@ router.get("/bookings/getbookings", bookings);
 
 router.post("/bookings/bookRoom", bookRoom);
 
-router.post("/bookings/cancelbooking", cancelBooking);
+// router.post("/bookings/cancelbooking", cancelBooking);
 
 module.exports = router;
+ 

@@ -4,11 +4,7 @@ const { Schema } = mongoose;
 
 const bookingSchema = new Schema(
   {
-    room: {
-      type: String,
-      required: true,
-    },
-    roomid: {
+    roomName: {
       type: String,
       required: true,
     },
@@ -24,11 +20,11 @@ const bookingSchema = new Schema(
       type: String,
       required: true,
     },
-    totalamount: {
+    totalAmount: {
       type: Number,
       required: true,
     },
-    totaldays: {
+    totalDays: {
       type: Number,
       required: true,
     },

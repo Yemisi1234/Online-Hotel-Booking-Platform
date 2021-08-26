@@ -1,17 +1,20 @@
 var myUser = require("../models/userModel.js");
 var jwt = require("jsonwebtoken");
-
+var validator = require("email-validator");
 
 //Register User
 async function register(req, res) {
   const { name, email, password } = req.body;
 
-  if (!name) return res.status(400).send("Name is required");
+  if (!name || name === "" || name.length < 3)
+    return res.status(400).send("Name is required");
   if (!password || password.length < 6)
     return res
       .status(400)
       .send("Password is required and should be minimum of 6 characters long");
 
+  let isValidEmail = validator.validate(email);
+  if (!isValidEmail) return res.status(400).send("Please Use a valid Email");
   let userExists = await myUser.findOne({ email }).exec();
 
   if (userExists) return res.status(400).send("Email exists");
@@ -32,6 +35,8 @@ async function register(req, res) {
 async function login(req, res) {
   const { email, password } = req.body;
   if (!email) return res.status(400).send("Email is required");
+  let isValidEmail = validator.validate(email);
+  if (!isValidEmail) return res.status(400).send("Please Use a valid Email");
   if (!password || password.length < 6)
     return res
       .status(400)
