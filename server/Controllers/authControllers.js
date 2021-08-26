@@ -60,7 +60,6 @@ async function login(req, res) {
         user: {
           Id: userExists._id,
           name: userExists.name,
-          isAdmin:"NO",
           email: userExists.email,
           isAdmin: userExists.isAdmin,
           createdAt: userExists.createdAt,
