@@ -17,7 +17,7 @@ export default function Payment(props) {
     customer: {
       email: props.email,
       phonenumber: '08101052072',
-      name: 'chinedu emordi',
+      name:props.name,
     },
     customizations: {
       title: 'Chinedu Hotels',

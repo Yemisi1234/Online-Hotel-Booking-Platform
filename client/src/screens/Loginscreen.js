@@ -36,7 +36,7 @@ export default function Loginscreen() {
         ).data;
         console.log(result);
         localStorage.setItem('currentUser',JSON.stringify(result))
-        window.location.href='/'
+         window.location.href='/'
       } catch (error) {
         seterror(true)
         setloading(false)

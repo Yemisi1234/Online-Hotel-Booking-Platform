@@ -46,8 +46,6 @@ function Adminscreen() {
          
             
          <AdminHotelOwner />
-
-  
 </TabPane>
       </Tabs>
     </div>
@@ -65,7 +63,7 @@ export function Bookings() {
     try {
       setloading(true);
       const data = await (
-        await axios.get("/api/bookings/getbookings")
+        await axios.get("http://localhost:5000/api/bookings/getbookings")
       ).data;
       setbookings(data);
       setloading(false);
@@ -85,8 +83,11 @@ export function Bookings() {
                                <th>Booking Id</th>
                                <th>Userid</th>
                                <th>Room</th>
+                               <th>totalDays</th>
+                               <th>totalAmount</th>
                                <th>From</th>
                                <th>To</th>
+                               <th>Transactionid</th>
                                <th>Status</th>
                            </tr>
                        </thead>
@@ -95,9 +96,12 @@ export function Bookings() {
                                return <tr>
                                    <td>{booking._id}</td>
                                    <td>{booking.userid}</td>
-                                   <td>{booking.room}</td>
+                                   <td>{booking.roomName}</td>
+                                   <td>{booking.totalDays}</td>
+                                   <td>{booking.totalAmount}</td>
                                    <td>{booking.fromdate}</td>
                                    <td>{booking.todate}</td>
+                                   <td>{booking.transactionId}</td>
                                    <td>{booking.status}</td>
                                </tr>
                            })}
