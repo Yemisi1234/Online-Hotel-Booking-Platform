@@ -14,50 +14,39 @@ export default function Registerscreen() {
   const[loading, setloading]=useState(false)
   const[error, seterror]=useState(false)
   const[success, setsuccess]=useState(false) 
-  async function register(){
-
-      if(password!=cpassword)
-      {
-          alert("passwords not matched")
+  async function register() {
+    if (password != cpassword) {
+      alert("passwords not matched");
+    } else {
+      const user = {
+        name,
+        email,
+        password,
+      };
+      console.log(user);
+      try {
+        setloading(true);
+        const result = await axios.post(
+          "http://localhost:5000/api/users/register",
+          user
+        );
+        setloading(false);
+        setsuccess(true);
+        setemail("");
+        setname("");
+        setcpassword("");
+        setpassword("");
+      } catch (error) {
+        seterror(true);
+        setloading(false);
+        console.log(error);
       }
-      else{
-          const user={
-              name,
-              email,
-              password
-          }
-          console.log(user);
-          try {
-            setloading(true)
-<<<<<<< HEAD
-            const result = await axios.post(
-              "http://localhost:5000/api/users/register",
-              user
-            );
-=======
-            console.log(user);
-            const result = await axios.post('/api/users/register',user)
->>>>>>> 20634f592bc284b89485f4d3ef2c87bac362e94a
-            setloading(false)
-            setsuccess(true)
-            setemail('')
-            setname('')
-            setcpassword('')
-            setpassword('')
-          } catch (error) {
-            seterror(true)
-            setloading(false)
-            console.log(error);
-          }
-      
-      }
-
+    }
   }
 
   return (
     <div className="register">
       <div className="row justify-content-center mt-5">
-<<<<<<< HEAD
         <div className="col-md-5 mt-5 text-left shadow-lg p-3 mb-5 bg-white rounded">
           {loading && <Loader />}
           {success && <Success success="User Registered Successfully" />}
@@ -87,21 +76,6 @@ export default function Registerscreen() {
                 setemail(e.target.value);
               }}
             />
-=======
-        <div className="col-md-5 mt-5 text-left shadow-lg p-3 mb-5 rounded">
-
-          {loading && (<Loader/>)}
-          {success && (<Success success='User Registered Successfully' />)}
-          {error && (<Error error='Email already registred' />)}
-          <div className="title">
-          <h2 className="text-center m-2 " style={{ fontSize: "35px", color: '#ffff', }}>
-            Register
-          </h2>
-          </div>
-          <div className="InputContainer">
-            <input required type="text" placeholder="name" className="form-control mt-1" value={name} onChange={(e)=>{setname(e.target.value)}} />
-            <input required type="text" placeholder="email" className="form-control mt-1" value={email} onChange={(e)=>{setemail(e.target.value)}} />
->>>>>>> 20634f592bc284b89485f4d3ef2c87bac362e94a
             <input
               type="text"
               placeholder="password"
@@ -122,7 +96,6 @@ export default function Registerscreen() {
                 setcpassword(e.target.value);
               }}
             />
-<<<<<<< HEAD
             <button
               onClick={register}
               className="btn btn-primary rounded-pill mt-3 mb-3"
@@ -133,13 +106,6 @@ export default function Registerscreen() {
             <a style={{ color: "black" }} href="/login/:">
               Click Here To Login
             </a>
-=======
-            {/* <div className = "buttonContainer"> */}
-            <button onClick={register} className="btn btn-primary rounded-pill mt-3 mb-3 ">REGISTER</button>
-            {/* </div> */}
-            <br/>
-            <a style={{color:'black'}} href="/login">Click Here To Login</a>
->>>>>>> 20634f592bc284b89485f4d3ef2c87bac362e94a
           </div>
         </div>
       </div>
