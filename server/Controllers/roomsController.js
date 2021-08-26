@@ -55,7 +55,7 @@ async function addRoom(req, res) {
   } = req.body;
 
   const newroom = new Room({
-    name: roomName,
+    roomName,
     rentperday,
     maxcount,
     description,
