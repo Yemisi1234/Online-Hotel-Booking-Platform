@@ -66,7 +66,7 @@ export default function Registerscreen() {
             <button onClick={login} className="btn btn-primary rounded-pill mt-3 mb-3 ">LOGIN</button>
             {/* </div> */}
             <br/>
-            <a style={{color:'black'}} href="/login">Click Here To Register</a>
+            <a style={{color:'black'}} href="/register"><p>Click Here To Register</p></a>
           </div>
         </div>
       </div>

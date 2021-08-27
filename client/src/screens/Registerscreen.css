@@ -28,10 +28,12 @@
     width: 60%;
     margin-left: 20%;
 }
-/* .buttonContainer > button{
-   
-} */
-button{
-    background-color: red;
+.InputContainer input{
+  border-color: #ffc783  !important;
 }
-
+.InputContainer button{
+    border: none;
+}
+.InputContainer  > a > p{
+    color: #fff;
+}

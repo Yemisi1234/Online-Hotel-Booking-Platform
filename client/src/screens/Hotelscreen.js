@@ -5,6 +5,7 @@ import Hotels from "../components/Hotels";
 import { Calendar } from "react-date-range";
 import { DateRangePicker } from "react-date-range";
 import moment from "moment";
+import './Hotelscreen.css'
 
 import axios from "axios";
 import Loader from "../components/Loader";
@@ -35,7 +36,7 @@ function Hotelscreen() {
     }
   }, []);
   return (
-      <div className="row justify-content-center">
+      <div className="row justify-content-center" >
         {loading ? (
           <Loader />
         ) : (

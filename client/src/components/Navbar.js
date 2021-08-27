@@ -42,7 +42,7 @@ function Navbar() {
             <>
             <li className="nav-item active">
               <a className="nav-link" href="/register">
-              <i class="fa fa-address-book"></i>Register
+              <i class="fa fa-address-book"></i> Register
               </a>
             </li>
             <li className="nav-item">
