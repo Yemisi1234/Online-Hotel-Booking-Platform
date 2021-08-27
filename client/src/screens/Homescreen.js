@@ -82,7 +82,7 @@ function Homescreen() {
 
   function filterBySearch()
   {
-    const dupdate = duplicatehotes.filter(room=>room.name.toLowerCase().includes(searchkey))
+    const dupdate = duplicatehotes.filter(room=>room.roomName.toLowerCase().includes(searchkey))
     sethotels(dupdate)
   }
 

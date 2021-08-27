@@ -28,11 +28,15 @@ function Room({ room, fromdate, todate }) {
         </p>
 
         <div style={{ float: "right" }}>
-          
-          {(fromdate && todate) && (<Link to={`/book/${room._id}/${fromdate}/${todate}`}>
+          {/* {(room.maxcount!==0)?( */}
+             
+       {(fromdate && todate && room.maxcount!==0) && (<Link to={`/book/${room._id}/${fromdate}/${todate}`}>
             <button className="btn btn-dark m-2">Book Now</button>
           </Link>)}
 
+      {(room.maxcount===0)&& (<button className="btn btn-danger m-2">
+            Booked
+          </button>)}
           <button className="btn btn-danger m-2"  onClick={handleShow}>
             View Details
           </button>
@@ -41,7 +45,7 @@ function Room({ room, fromdate, todate }) {
 
       <Modal show={show} onHide={handleClose} size="lg" data--aos='zoom-in'>
         <Modal.Header>
-          <Modal.Title>{room.name}</Modal.Title>
+          <Modal.Title>{room.roomName}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>

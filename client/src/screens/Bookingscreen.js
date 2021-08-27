@@ -6,6 +6,7 @@ import Loader from "../components/Loader";
 import Success from '../components/Success'
 import StripeCheckout from 'react-stripe-checkout'
 import Payment from '../components/Payment';
+import {v4} from 'uuid';
 
 import moment from "moment"
 import AOS from 'aos';
@@ -24,14 +25,19 @@ function Bookingscreen({match}) {
     const totalDays = moment.duration(todate.diff(fromdate)).asDays()+1
 
    // const totalAmount = totalDays * match.params.rentperday
-    
+    console.log("i am in booking pay");
+    console.log("transaction id " + v4());
+    console.log(JSON.parse(localStorage.getItem('currentUser')).user.Id)
+    console.log(JSON.parse(localStorage.getItem('currentUser')).user.name)
+    console.log(JSON.parse(localStorage.getItem('currentUser')).user.email)
+
    const [totalAmount , settotalAmount]=useState()
     useEffect(async() => {
         
         try {
             setloading(true);
-            const data = await (await axios.get(`/api/rooms/getRoom/${roomid}`)).data;
-            console.log(data);
+            const data = await (await axios.get(`http://localhost:5000/api/rooms/getRoom/${roomid}`)).data;
+            console.log("this is the room from database  " + data);
             setroom(data);
             setloading(false);
             settotalAmount(data.rentperday * totalDays)
@@ -43,38 +49,46 @@ function Bookingscreen({match}) {
     }, [])
 
 
-    async function tokenHander(token) {
+    async function bookingHander() {
     
-        console.log(token);
         const bookingDetails ={
 
-            token ,
-            user : JSON.parse(localStorage.getItem('currentUser')) || "chineduemordi@gmail.com",
-            room ,
-            fromdate,
-            todate,
-            totalDays,
-            totalAmount
+            
+            userid : JSON.parse(localStorage.getItem('currentUser')).user.Id,
+            roomName :room.roomName,
+            fromdate : match.params.fromdate,
+            todate : match.params.todate,
+            totalDays:totalDays,
+            totalAmount:totalAmount,
+            transactionId:v4(),
+            status:"booked"
 
         }
 
-
+console.log("this is " + bookingDetails.roomName);
         try {
             setloading(true);
-            const result = await axios.get('/api/bookings/bookroom' , bookingDetails)
+            console.log("this is " + bookingDetails.totalDays);
+            const result = await axios.post('/api/bookings/bookRoom' , bookingDetails)
+            console.log("this is database result " + result)
+            const updateroom = await (await axios.put(`http://localhost:5000/api/rooms/update/${roomid}`)).data;
+           
             setloading(false)
-            Swal.fire('Congrats' , 'Your Room has booked succeessfully' , 'success').then(result=>{
-                window.location.href='/profile'
-            })
+            // Swal.fire('Congrats' , 'Your Room has booked succeessfully' , 'success').then(result=>{
+                // window.location.href='/profile'
+            // })
         } catch (error) {
             console.log(error);
             setloading(false)
-            Swal.fire('Oops' , 'Something went wrong , please try later' , 'error')
+            // Swal.fire('Oops' , 'Something went wrong , please try later' , 'error')
         }
         
     }
-    const emailaddress = "chinEmordi@gmail.com"
 
+    
+    const emailaddress = "chinEmordi@gmail.com"
+  console.log();
+  console.log();
     return (
         <div className='m-5'>
             
@@ -85,7 +99,7 @@ function Bookingscreen({match}) {
                       <div className="col-md-6 my-auto">
                         
                          <div>
-                         <h1> {room.name}</h1>
+                         <h1>roomName: {room.roomName}</h1>
                            <img src={room.imageurls[0]} style={{height:'400px'}} />
                          </div>
 
@@ -95,7 +109,8 @@ function Bookingscreen({match}) {
                            <h1><b>Booking Details</b></h1>
                            <hr />
 
-                           <p><b>Name</b> : {JSON.parse(localStorage.getItem('currentUser')).name}</p>
+                           <p><b>Name</b> : {JSON.parse(localStorage.getItem('currentUser')).user.name}</p>
+                           <p>roomName:{room.roomName}</p>
                            <p><b>From Date</b> : {match.params.fromdate}</p>
                            <p><b>To Date</b> : {match.params.todate}</p>
                            <p><b>Max Count </b>: {room.maxcount}</p>
@@ -108,8 +123,8 @@ function Bookingscreen({match}) {
                            <p>Rent Per Day : <b>{room.rentperday}</b></p>
                            <h1><b>Total Amount :#{totalAmount}</b></h1>
 
-                         
-                             <Payment amount={totalAmount} email = {emailaddress} />
+                           <button onClick ={bookingHander}>book room, pay later</button>
+                             <Payment amount={totalAmount} name = {JSON.parse(localStorage.getItem('currentUser')).user.name} email = {JSON.parse(localStorage.getItem('currentUser')).user.email} onClick={bookingHander} />
 
                           
                            </div>

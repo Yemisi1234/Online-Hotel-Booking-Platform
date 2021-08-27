@@ -1,4 +1,5 @@
 const rooms = require("../models/roomModel");
+const Hotels = require("../models/hotelModel");
 
 async function getAllRooms(req, res) {
   try {
@@ -19,20 +20,37 @@ async function getSingleRoom(req, res, id) {
   }
 }
 
-async function getRoomsByHotel(req, res, hotel){
-  hotel = req.params.hotel;
-  try{
-    let room = await rooms.find({hotelName:hotel});
-    return res.status(200).send(room);
+async function updateSingleRoom(req, res, id) {
+  id = req.params.id;
+  try {
+    let room = await rooms.findOne({ _id: id });
+    console.log(room);
+    room.maxcount = room.maxcount - 1;
+    // console.log(room);
+    updatedRoom = await room.save();
+    console.log("room says:", room);
+    console.log("updatedroom says:", updatedRoom);
 
-  }catch(err){
-    return res.status(200).json({err})
+    return res.status(200).send(room);
+  } catch (err) {
+    return res.status(400).json({ err });
+  }
+}
+
+async function getRoomsByHotel(req, res, hotel) {
+  hotel = req.params.hotel;
+  try {
+    let room = await rooms.find({ hotelName: hotel });
+    return res.status(200).send(room);
+  } catch (err) {
+    return res.status(200).json({ err });
   }
 }
 
 async function addRoom(req, res) {
   const {
-    room,
+    hotelName,
+    roomName,
     rentperday,
     maxcount,
     description,
@@ -43,8 +61,9 @@ async function addRoom(req, res) {
     image3,
   } = req.body;
 
-  const newroom = new Room({
-    name: room,
+  const newroom = new rooms({
+    hotelName,
+    roomName,
     rentperday,
     maxcount,
     description,
@@ -61,4 +80,10 @@ async function addRoom(req, res) {
   }
 }
 
-module.exports = { getAllRooms, getSingleRoom, addRoom ,getRoomsByHotel};
+module.exports = {
+  getAllRooms,
+  getSingleRoom,
+  addRoom,
+  getRoomsByHotel,
+  updateSingleRoom,
+};

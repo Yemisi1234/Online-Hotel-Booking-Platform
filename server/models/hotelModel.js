@@ -15,6 +15,12 @@ const hotelSchema = new Schema(
       type: Number,
       required: true,
     },
+
+    description: {
+      type: String,
+      required: true,
+    },
+
     email: {
       type: String,
       required: true,

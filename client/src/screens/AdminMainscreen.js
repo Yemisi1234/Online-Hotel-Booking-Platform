@@ -46,8 +46,6 @@ function Adminscreen() {
          
             
          <AdminHotelOwner />
-
-  
 </TabPane>
       </Tabs>
     </div>
@@ -65,7 +63,7 @@ export function Bookings() {
     try {
       setloading(true);
       const data = await (
-        await axios.get("/api/bookings/getbookings")
+        await axios.get("http://localhost:5000/api/bookings/getbookings")
       ).data;
       setbookings(data);
       setloading(false);
@@ -85,8 +83,11 @@ export function Bookings() {
                                <th>Booking Id</th>
                                <th>Userid</th>
                                <th>Room</th>
+                               <th>totalDays</th>
+                               <th>totalAmount</th>
                                <th>From</th>
                                <th>To</th>
+                               <th>Transactionid</th>
                                <th>Status</th>
                            </tr>
                        </thead>
@@ -95,9 +96,12 @@ export function Bookings() {
                                return <tr>
                                    <td>{booking._id}</td>
                                    <td>{booking.userid}</td>
-                                   <td>{booking.room}</td>
+                                   <td>{booking.roomName}</td>
+                                   <td>{booking.totalDays}</td>
+                                   <td>{booking.totalAmount}</td>
                                    <td>{booking.fromdate}</td>
                                    <td>{booking.todate}</td>
+                                   <td>{booking.transactionId}</td>
                                    <td>{booking.status}</td>
                                </tr>
                            })}
@@ -219,7 +223,8 @@ export function Users(){
 
 
 export function Addroom() {
-  const [room, setroom] = useState("");
+  const [roomName, setroom] = useState("");
+  const [hotelName, sethotelName] = useState("");
   const [rentperday, setrentperday] = useState();
   const [maxcount, setmaxcount] = useState();
   const [description, setdescription] = useState("");
@@ -228,123 +233,135 @@ export function Addroom() {
   const [image1, setimage1] = useState("");
   const [image2, setimage2] = useState("");
   const [image3, setimage3] = useState("");
-  async function addRoom()
-  {
-      const roomobj = {
-          room , 
-          rentperday, maxcount ,description ,phonenumber ,type ,image1 ,image2 ,image3
-      }
-      try {
-          const result = await axios.post('/api/rooms/addroom', roomobj)
-      } catch (error) {
-          
-      }
+  async function addRoom() {
+    const roomobj = {
+      hotelName,
+      roomName,
+      rentperday,
+      maxcount,
+      description,
+      phonenumber,
+      type,
+      image1,
+      image2,
+      image3,
+    };
+    console.log(roomobj);
+    try {
+      console.log(roomobj);
+      const result = await axios.post(
+        "http://localhost:5000/api/rooms/addroom",
+        roomobj
+      );
+    } catch (error) {}
   }
   return (
     <div className="row">
-     
-        <div className="col-md-5">
-          <input
-            type="text"
-            className="form-control mt-1"
-            placeholder="name"
-            value={room}
-            onChange={(e) => {
-              setroom(e.target.value);
-            }}
-          />
-
-          <input
-            type="text"
-            className="form-control mt-1"
-            placeholder="rentperday"
-            value={rentperday}
-            onChange={(e) => {
-              setrentperday(e.target.value);
-            }}
-          />
-
-          <input
-            type="text"
-            className="form-control mt-1"
-            placeholder="maxcount"
-            value={maxcount}
-            onChange={(e) => {
-              setmaxcount(e.target.value);
-            }}
-          />
-
-          <input
-            type="text"
-            className="form-control mt-1"
-            placeholder="description"
-            value={description}
-            onChange={(e) => {
-              setdescription(e.target.value);
-            }}
-          />
-
-          <input
-            type="text"
-            className="form-control mt-1"
-            placeholder="phonenumber"
-            value={phonenumber}
-            onChange={(e) => {
-              setphonenumber(e.target.value);
-            }}
-          />
-          
-        </div>
-
-        <div className="col-md-6">
+      <div className="col-md-5">
         <input
-            type="text"
-            className="form-control mt-1"
-            placeholder="type"
-            value={type}
-            onChange={(e) => {
-              settype(e.target.value);
-            }}
-          />
+          type="text"
+          className="form-control mt-1"
+          placeholder="Hotel"
+          value={hotelName}
+          onChange={(e) => {
+            sethotelName(e.target.value);
+          }}
+        />
+
         <input
-            type="text"
-            className="form-control mt-1"
-            placeholder="Image url 1"
-            value={image1}
-            onChange={(e) => {
-              setimage1(e.target.value);
-            }}
-          />
-          <input
-            type="text"
-            className="form-control mt-1"
-            placeholder="Image url 2"
-            value={image2}
-            onChange={(e) => {
-              setimage2(e.target.value);
-            }}
-          />
-          <input
-            type="text"
-            className="form-control mt-1"
-            placeholder="Image url 3"
-            value={image3}
-            onChange={(e) => {
-              setimage3(e.target.value);
-            }}
-          />
-          <div className='mt-1 text-right'>
-          <button className="btn btn-primary" onClick={addRoom}>ADD ROOM</button>
-          </div>
+          type="text"
+          className="form-control mt-1"
+          placeholder="room"
+          value={roomName}
+          onChange={(e) => {
+            setroom(e.target.value);
+          }}
+        />
+
+        <input
+          type="text"
+          className="form-control mt-1"
+          placeholder="rentperday"
+          value={rentperday}
+          onChange={(e) => {
+            setrentperday(e.target.value);
+          }}
+        />
+
+        <input
+          type="text"
+          className="form-control mt-1"
+          placeholder="maxcount"
+          value={maxcount}
+          onChange={(e) => {
+            setmaxcount(e.target.value);
+          }}
+        />
+
+        <input
+          type="text"
+          className="form-control mt-1"
+          placeholder="description"
+          value={description}
+          onChange={(e) => {
+            setdescription(e.target.value);
+          }}
+        />
+
+        <input
+          type="text"
+          className="form-control mt-1"
+          placeholder="phonenumber"
+          value={phonenumber}
+          onChange={(e) => {
+            setphonenumber(e.target.value);
+          }}
+        />
+      </div>
+
+      <div className="col-md-6">
+        <input
+          type="text"
+          className="form-control mt-1"
+          placeholder="type"
+          value={type}
+          onChange={(e) => {
+            settype(e.target.value);
+          }}
+        />
+        <input
+          type="text"
+          className="form-control mt-1"
+          placeholder="Image url 1"
+          value={image1}
+          onChange={(e) => {
+            setimage1(e.target.value);
+          }}
+        />
+        <input
+          type="text"
+          className="form-control mt-1"
+          placeholder="Image url 2"
+          value={image2}
+          onChange={(e) => {
+            setimage2(e.target.value);
+          }}
+        />
+        <input
+          type="text"
+          className="form-control mt-1"
+          placeholder="Image url 3"
+          value={image3}
+          onChange={(e) => {
+            setimage3(e.target.value);
+          }}
+        />
+        <div className="mt-1 text-right">
+          <button className="btn btn-primary" onClick={addRoom}>
+            ADD ROOM
+          </button>
         </div>
-
-        
-
-      
-        
-        
-        
-     
+      </div>
     </div>
   );
 }

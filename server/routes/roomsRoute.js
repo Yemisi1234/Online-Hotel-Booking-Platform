@@ -6,16 +6,17 @@ const {
   getSingleRoom,
   addRoom,
   getRoomsByHotel,
+  updateSingleRoom,
 } = require("../Controllers/roomsController");
 
 router.get("/rooms/getAllRooms", getAllRooms);
 
 router.get("/rooms/getRoom/:id", getSingleRoom);
 
+router.put("/rooms/updateRoom/:id", updateSingleRoom);
+
+
 router.post("/rooms/addroom", addRoom);
 
-router.get("/getRoom/:id", getSingleRoom);
-
-router.get('/rooms/getRooms/:hotel', getRoomsByHotel);
-
+router.get("/rooms/getRooms/:hotel", getRoomsByHotel);
 module.exports = router;
