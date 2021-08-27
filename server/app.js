@@ -25,12 +25,7 @@ readdirSync("./routes").map((file) =>
   app.use("/api", require(`./routes/${file}`))
 );
 
-// Step 1:
-app.use(express.static(path.resolve(__dirname, "../client/build")));
-// Step 2:
-app.get("*", function (request, response) {
-  response.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
-});
+
 
 
 // catch 404 and forward to error handler

@@ -22,9 +22,11 @@ const userSchema = new Schema(
       min: 6,
       max: 64,
     },
-    flutter_acccount_id: "",
-    flutter_user: {},
-    flutterSession: {},
+    isAdmin: {
+      type: String,
+      required: true,
+      default: "noAdmin",
+    },
   },
   { timestamps: true }
 );

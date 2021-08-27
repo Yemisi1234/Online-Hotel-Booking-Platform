@@ -9,6 +9,7 @@ import { Tag, Divider } from 'antd';
 const { TabPane } = Tabs;
 
 const user = JSON.parse(localStorage.getItem('currentUser'))
+console.log(user);
 function Profilescreen() {
   return (
     <div className="mt-5 ml-3">
